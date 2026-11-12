@@ -85,17 +85,30 @@ const printGithubUserProfile = async (username) => {
 
 //EJERCICIO 7
 
-const getAndPrintGitHubUserProfile = async (username) => {
-    const dataProfile = await fetch (`https://api.github.com/users/Sergioochoa-m`)
-    const random5 = await dataProfile.json()
-    let dataSection = ``
-    dataSection += `<section>`
-    dataSection += `<img src="${random5.avatar_url}" alt="imagen de usuario">`
-    dataSection += `<h1>${random5.login}</h1>`
-    dataSection += `<p>Public repos: ${random5.public_repos}</p>`
-    dataSection += `</section>`
-console.log(dataSection)
-    return(dataSection)
-}
+// const getAndPrintGitHubUserProfile = async (username) => {
+//     const dataProfile = await fetch (`https://api.github.com/users/Sergioochoa-m`)
+//     const random5 = await dataProfile.json()
+//     let dataSection = ``
+//     dataSection += `<section>`
+//     dataSection += `<img src="${random5.avatar_url}" alt="imagen de usuario">`
+//     dataSection += `<h1>${random5.login}</h1>`
+//     dataSection += `<p>Public repos: ${random5.public_repos}</p>`
+//     dataSection += `</section>`
+// console.log(dataSection)
+//     return(dataSection)
+// }
 
-//NO SE POR QUE NO VA   
+
+const getAndPrintGitHubUserProfile = async (username) => {
+    const dataProfile = await fetch(`https://api.github.com/users/Sergioochoa-m`);
+    const random5 = await dataProfile.json();
+
+    return `
+<section>
+    <img src="${random5.avatar_url}" alt="imagen de usuario">
+    <h1>"${random5.name}"</h1>
+    <p>Public repos: "${random5.public_repos}"</p>
+</section>`;
+};
+
+//NO SE POR QUE NO VA ni con un modo ni con otro 
