@@ -4,25 +4,23 @@ const getAllBreeds = async () => {
     const dataPerros = await fetch(`https://dog.ceo/api/breeds/list/all`)
 
 const perros = await dataPerros.json()
-// console.log(perros)
-// console.log(dataPerros)
+
 
 const razas = Object.keys(perros.message)
-// console.log(razas)
 
 return razas
 }
 
+
 //EJERCICIO 2
+
 
 const getRandomDog = async () => {
 
     const dataRandom = await fetch(`https://dog.ceo/api/breeds/image/random`)
     const random = await dataRandom.json()
-    // console.log(random)
 
     const randomPerro = Object(random.message)
-    // console.log(randomPerro)
 
     return(randomPerro)
 
@@ -40,75 +38,38 @@ const getAllImagesByBreed = async () => {
     const randomFoto = Object(random1.message)
 
     return(randomFoto)
-
 }
+    //EJERCICIO 4
 
-//EJERCICIO 4
 const getAllImagesByBreed2 = async (breed) => {
+const response = await fetch(`https://dog.ceo/api/breed/${breed}/images`)
 
-    const dataBreed = await fetch(`https://dog.ceo/api/breed/${breed}/images`)
-    const random2 = await dataBreed.json()
+const data = await response.json()
 
-    const randomFoto1 = Object(random2.message)
-    return(randomFoto1)
+const image = Object(data.message)
+
+return image
 }
 
 //EJERCICIO 5
-
 const getGitHubUserProfile = async (username) => {
+const response = await fetch(`https://api.github.com/users/${username}`)
+const data = await response.json()
 
-    const dataUser = await fetch (`https://api.github.com/users/${username}`)
-    const random3 = await dataUser.json()
-    // console.log(random3)
-
-    const randomUser = Object(random3.message)
-    return(random3)
-
+return data
 }
 
 //EJERCICIO 6
-
-
 const printGithubUserProfile = async (username) => {
-
-    const dataProfile = await fetch (`https://api.github.com/users/${username}`)
-    const random4 = await dataProfile.json()
-    const imagenFoto = {
-        name: random4.name ,
-        img: random4.avatar_url
-    }
-
-    const randomProfile = Object(random4.message)
-    return(imagenFoto)
-
+const responseUserName = await fetch(`https://api.github.com/users/${username}`)
+const dataUserName = await responseUserName.json()
+const fotoYNombre = { name: dataUserName.name, img: dataUserName.avatar_url }
+return fotoYNombre
 }
 
 //EJERCICIO 7
 
-// const getAndPrintGitHubUserProfile = async (username) => {
-//     const dataProfile = await fetch (`https://api.github.com/users/Sergioochoa-m`)
-//     const random5 = await dataProfile.json()
-//     let dataSection = ``
-//     dataSection += `<section>`
-//     dataSection += `<img src="${random5.avatar_url}" alt="imagen de usuario">`
-//     dataSection += `<h1>${random5.login}</h1>`
-//     dataSection += `<p>Public repos: ${random5.public_repos}</p>`
-//     dataSection += `</section>`
-// console.log(dataSection)
-//     return(dataSection)
-// }
-
-
 const getAndPrintGitHubUserProfile = async (username) => {
-    const dataProfile = await fetch(`https://api.github.com/users/Sergioochoa-m`);
-    const random5 = await dataProfile.json();
-
-    return `
-<section>
-    <img src="${random5.avatar_url}" alt="imagen de usuario">
-    <h1>"${random5.name}"</h1>
-    <p>Public repos: "${random5.public_repos}"</p>
-</section>`;
-};
-
-//NO SE POR QUE NO VA ni con un modo ni con otro 
+const response = await fetch(`https://api.github.com/users/${username}`)
+const data = await response.json()
+}
